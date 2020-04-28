@@ -10,13 +10,57 @@ namespace Opgave1
     {
         static void Main(string[] args)
         {
-            //o1d1();
-            //o1d2();
-            //o1d3();
+            bool run = true;
+            while (run)
+            {
+                try
+                {
+                    Console.Clear();
+                    Console.WriteLine("Please choose one of the following.\n\nKey   Task          Description");
+                    Console.WriteLine(" 1    opgave 1.1    Udregn temperaturen i Celsius ud fra temperaturen i Fahrenheit");
+                    Console.WriteLine(" 2    opgave 1.2    Udregn temperaturen i andre enheder ud fra Celsius");
+                    Console.WriteLine(" 3    opgave 1.3    Valutaomregning");
+                    Console.WriteLine(" 4    opgave 2.1    Udskrivning af tekst på baggrund af input");
+                    Console.WriteLine(" 5    opgave 2.2    Navn på dag i ugen");
+                    Console.WriteLine(" 6    opgave 2.3    Udregning af rabatsats og totalpris");
+                    Console.WriteLine(" E    Exit          Closing the program");
 
-            //o2d1();
-            //o2d2();
-            o2d3();
+                    ConsoleKeyInfo info = Console.ReadKey(true);
+                    string input = Convert.ToString(info.KeyChar).ToUpper();
+
+                    switch (input) //Switch-case på Key enum
+                    {
+                        case "1":
+                            o1d1();
+                            break;
+                        case "2":
+                            o1d2();
+                            break;
+                        case "3":
+                            o1d3();
+                            break;
+                        case "4":
+                            o2d1();
+                            break;
+                        case "5":
+                            o2d2();
+                            break;
+                        case "6":
+                            o2d3();
+                            break;
+                        case "E":
+                            run = false;
+                            break;
+                    }
+                    Console.Write("\n   Opgaven er færdig. Tryk på en vilkårlig knap for at vende tilbage.");
+                    Console.ReadKey();
+                }
+                catch
+                {
+                    Console.Write("Error occured. Please only enter a valid option.\nPress any key to continue");
+                    Console.ReadKey();
+                }
+            }
 
             void o1d1()
             {
@@ -28,9 +72,6 @@ namespace Opgave1
                 Console.Clear();
                 double celsius = Math.Round((fahrenheit - 32) * 5 / 9, 2);
                 Console.WriteLine("{0} grader Fahrenheit svare til {1} grader Celcius", fahrenheit, celsius);
-                Console.ReadKey();
-
-
             }
             void o1d2()
             {
@@ -47,7 +88,6 @@ namespace Opgave1
                 Console.SetCursorPosition(7, 1); Console.WriteLine("Fahrenheit");
                 Console.SetCursorPosition(7, 2); Console.WriteLine("Kelvin");
                 Console.SetCursorPosition(7, 3); Console.WriteLine("Réaumur");
-                Console.ReadKey();
             }
             void o1d3()
             {
@@ -150,17 +190,13 @@ namespace Opgave1
                 else if (units > 200 && units <= 400) { discount_rate = 8; }
                 else if (units > 400 && units <= 700) { discount_rate = 10; }
                 else if (units > 700 ) { discount_rate = 15; }
-                else
-                {
+                else{
                     Console.WriteLine("Der er sket en fejl. Tryk på en tast");
                     Console.ReadKey();
                 }
-
                 Console.Clear();
                 Console.WriteLine("Pris før rabat: {0}\nRabat: {1}%\nPris efter rabat: {2}",Math.Round(units*price,2),discount_rate,(Math.Round(units * price-((units*price/100)*discount_rate),2)));
             }
-
-            Console.ReadKey();
         }
     }
 }
